@@ -1,0 +1,18 @@
+.profile__subtitle {
+    padding: 0;
+    margin-top: 16px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+/* для разрешения 425px */
+@media screen and (max-width: 425px) {
+    .profile__subtitle {
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+    }
+}

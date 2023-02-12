@@ -1,0 +1,17 @@
+.popup__form-item {
+    padding: 0;
+    max-width: 358px;
+    width: 100%;
+    min-height: 14px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border: none;
+    color: #000000;
+}
+
+.popup__form-item:focus {
+    outline: none;
+}

@@ -1,0 +1,15 @@
+.elements__item {
+    margin: 0;
+    padding: 0;
+    width: 282px;
+    height: 361px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+/* для разрешения 320px */
+@media screen and (max-width: 320px) {
+    .elements__item {
+        margin: 0 0 20px 0;
+    }
+}

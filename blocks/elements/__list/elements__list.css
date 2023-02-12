@@ -1,0 +1,35 @@
+.elements__list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    list-style-type: none;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    grid-column-gap: 17px;
+    grid-row-gap: 20px;
+    width: 100%;
+}
+
+/* для разрешения 1024px */
+@media screen and (max-width: 1024px) {
+    .elements__list {
+        justify-items: center;
+    }
+}
+
+
+/* для разрешения 768px */
+@media screen and (max-width: 768px) {
+    .elements__list {
+        width: 103%;
+    }
+}
+
+/* для разрешения 425px */
+@media screen and (max-width: 425px) {
+    .elements__list {
+        width: 100%;
+        padding: 0;
+        max-width: 282px;
+        margin: 0 auto 0 auto;
+    }
+}

@@ -1,0 +1,27 @@
+.header {
+    padding: 0;
+    max-width: 880px;
+    width: calc(100% - 2*200px);
+    padding: 0;
+    margin: 45px 200px 0;
+    border-bottom: 1px solid #545454;
+    color: #FFFFFF;
+}
+
+/* для разрешения 768px */
+@media screen and (max-width: 768px) {
+    .header {
+        width: calc(100% - 2*120px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* для разрешения 425px */
+@media screen and (max-width: 425px) {
+    .header {
+        max-width: 320px;
+        width: 100%;
+        margin: 28px auto 0 auto;
+    }
+}

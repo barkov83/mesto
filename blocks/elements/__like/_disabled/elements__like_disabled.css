@@ -1,0 +1,13 @@
+.elements__like_disabled {
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 19px;
+    background-image: url("../../../../images/elements__like_disabled.svg");
+    background-position: center;
+    transition: 0.2s ease-in;
+}
+
+.elements__like_disabled:hover {
+    opacity: 0.5;
+}

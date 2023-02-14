@@ -8,7 +8,7 @@
 /* для разрешения 768px */
 @media screen and (max-width: 768px) {
     .elements {
-        width: calc(100% - 2*100px);
+        width: calc(100% - 2*50px);
         margin-left: auto;
         margin-right: auto;
     }

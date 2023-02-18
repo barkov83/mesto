@@ -1,6 +1,7 @@
 .profile__subtitle {
+    max-width: 336px;
     padding: 0;
-    margin-top: 16px;
+    margin: 8px 0 0 0;
     font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -14,6 +15,9 @@
 /* для разрешения 425px */
 @media screen and (max-width: 425px) {
     .profile__subtitle {
+        margin-top: 7px;
+        height: 14px;
+        width: 282px;
         font-size: 14px;
         line-height: 17px;
         text-align: center;

@@ -1,4 +1,6 @@
 .popup__save {
+    margin: 0;
+    padding: 0;
     max-width: 358px;
     width: 100%;
     min-height: 50px;
@@ -17,7 +19,7 @@
 }
 
 .popup__save:hover {
-    opacity: 0.8;
+    background: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 425px) {

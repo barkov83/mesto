@@ -2,14 +2,13 @@
     max-width: 880px;
     width: calc(100% - 2*200px);
     padding: 0;
-    margin: 40px auto 0 200px;
+    margin: 40px auto 0 auto;
     display: flex;
 }
 
 /* для разрешения 1060px */
 @media screen and (max-width: 1060px) {
     .profile {
-        display: flex;
         flex-direction: column;
         align-items: center;
     }
@@ -28,10 +27,6 @@
     .profile {
         max-width: 282px;
         width: calc(100% - 2*19px);
-        padding: 0;
         margin: 42px auto 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
 }

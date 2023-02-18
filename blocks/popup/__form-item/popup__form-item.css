@@ -10,8 +10,20 @@
     line-height: 17px;
     border: none;
     color: #000000;
+
+    margin: 30px 36px 0 36px;
+    border-bottom: 1px solid #000000;
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
 .popup__form-item:focus {
     outline: none;
+}
+
+@media screen and (max-width: 425px) {
+    .popup__form-item {
+        margin-left: 22px;
+        margin-right: 22px;
+        max-width: 238px;
+    }
 }

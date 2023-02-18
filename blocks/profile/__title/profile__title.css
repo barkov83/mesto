@@ -9,6 +9,7 @@
     overflow: hidden;
     max-width: 294px;
     margin: 0;
+    padding: 0;
 }
 
 /* для разрешения 768px */
@@ -25,5 +26,6 @@
         font-size: 27px;
         line-height: 33px;
         max-width: 189px;
+        margin-left: 27.25px;
     }
 }

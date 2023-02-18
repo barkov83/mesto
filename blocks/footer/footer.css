@@ -1,8 +1,8 @@
 .footer {
-    max-width: 318px;
+    max-width: 880px;
     width: calc(100% - 2*200px);
     padding: 0;
-    margin: 66px auto auto 200px;
+    margin: 66px auto 60px auto;
 }
 
 /* для разрешения 768px */
@@ -19,7 +19,7 @@
     .footer {
         max-width: 282px;
         width: calc(100% - 2*19px);
-        margin: 48px auto 0 auto;
+        margin: 48px auto 36px auto;
 
     }
 }

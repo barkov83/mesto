@@ -12,12 +12,18 @@
     overflow: hidden;
 }
 
+@media screen and (max-width: 1060px) {
+    .profile__subtitle {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 /* для разрешения 425px */
 @media screen and (max-width: 425px) {
     .profile__subtitle {
         margin-top: 7px;
-        height: 14px;
-        width: 282px;
+        max-width: 282px;
         font-size: 14px;
         line-height: 17px;
         text-align: center;

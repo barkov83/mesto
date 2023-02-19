@@ -7,6 +7,10 @@
     transition: 0.2s;
     background-color: transparent;
     cursor: pointer;
+    background-image: url("../../../images/edit-button-element.svg");
+    background-size: 10px 10px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .profile__edit-button:hover {
@@ -19,6 +23,6 @@
         margin-top: 8px;
         width: 18px;
         height: 18px;
-        padding: 0;
+        background-size: 10px 10px;
     }
 }

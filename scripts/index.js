@@ -11,8 +11,8 @@ let fromJobInput = document.querySelector('#popup__vocation');
 
 
 const handlerAboutButtonClick = () => {
-	document.querySelector('#popup__username').value = nameInput.textContent;
-	document.querySelector('#popup__vocation').value = jobInput.textContent;
+	fromNameInput.value = nameInput.textContent;
+	fromJobInput.value = jobInput.textContent;
 	popup.classList.add('popup_opened');
 };
 
@@ -32,8 +32,7 @@ function formSubmitHandler(evt) {
 
 	nameInput.textContent = fromNameInput.value;
 	jobInput.textContent = fromJobInput.value;
-	popup.classList.remove('popup_opened');
+	handlerCloseButtonClick();
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
-// formElement.addEventListener('submit', handlerCloseButtonClick);

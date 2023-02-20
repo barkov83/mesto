@@ -14,8 +14,7 @@
 
 @media screen and (max-width: 1060px) {
     .profile__subtitle {
-        display: flex;
-        justify-content: center;
+        text-align: center;
     }
 }
 
@@ -26,6 +25,5 @@
         max-width: 282px;
         font-size: 14px;
         line-height: 17px;
-        text-align: center;
     }
 }

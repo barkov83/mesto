@@ -10,8 +10,7 @@
     line-height: 17px;
     border: none;
     color: #000000;
-
-    margin: 30px 36px 0 36px;
+    margin: 0 36px 0 36px;
     border-bottom: 1px solid #000000;
     border-color: rgba(0, 0, 0, 0.2);
 }
@@ -26,4 +25,8 @@
         margin-right: 22px;
         max-width: 238px;
     }
+}
+
+.popup__forms {
+    margin-top: 54px;
 }

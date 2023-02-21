@@ -10,6 +10,6 @@
 /* для разрешения 425px */
 @media screen and (max-width: 425px) {
     .profile__block {
-        margin: 18px 0 0 0;
+        margin: 26px 0 0 0;
     }
 }

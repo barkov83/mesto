@@ -36,3 +36,88 @@ function formSubmitHandler(evt) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
+
+
+
+const elementsList = document.querySelector('.elements__list');
+const elementsListTemplate = document.querySelector('.elements__list-template').content;
+
+
+const initialCards = [
+	{
+		name: 'Архыз',
+		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+	},
+	{
+		name: 'Челябинская область',
+		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+	},
+	{
+		name: 'Иваново',
+		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+	},
+	{
+		name: 'Камчатка',
+		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+	},
+	{
+		name: 'Холмогорский район',
+		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+	},
+	{
+		name: 'Байкал',
+		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+	},
+];
+
+initialCards.forEach(function (listCards) {
+	const CloneElementsListTemplate = elementsListTemplate.cloneNode(true);
+	CloneElementsListTemplate.querySelector('.card__title').textContent = listCards.name;
+	CloneElementsListTemplate.querySelector('.card__image').src = listCards.link
+	elementsList.append(CloneElementsListTemplate)
+});
+
+const newplaceFormInput = document.querySelector('.newplace__form-input');
+const newplaceFormLink = document.querySelector('.newplace__form-link');
+const formElementNewPlace = document.querySelector('.newplace__forms');
+
+
+const addButton = document.querySelector('.profile__add-button');
+const newplace = document.querySelector('.newplace')
+const closeButtonNewPlace = document.querySelector(".newplace__close");
+
+let nameNewplace = document.querySelector('.card__title');
+let linkNewplace = document.querySelector('.card__image');
+
+let fromNameNewplace = document.querySelector('#popup__imagename');
+let fromLinkNewplace = document.querySelector('#popup__link');
+
+const toggleOpenPopupNewPlace = () => {
+	newplace.classList.toggle('popup_opened');
+}
+
+const handlerOpenAddButtonClick = () => {
+	toggleOpenPopupNewPlace();
+}
+
+const handlerCloseAddButtonClick = () => {
+	toggleOpenPopupNewPlace();
+}
+
+addButton.addEventListener('click', handlerOpenAddButtonClick);
+closeButtonNewPlace.addEventListener('click', handlerCloseAddButtonClick);
+
+
+function newPlaceFormSubmitHandler(evt) {
+	evt.preventDefault();
+
+	CloneElementsListTemplate.querySelector('.card__title').textContent = newplaceFormInput.value,
+		CloneElementsListTemplate.querySelector('.card__image').src = newplaceFormLink.value,
+		elementsList.prepend(elementsListTemplate),
+
+		evt.target.reset();
+
+}
+
+formElementNewPlace.addEventListener('submit', newPlaceFormSubmitHandler);
+

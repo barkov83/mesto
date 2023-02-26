@@ -26,7 +26,7 @@
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
 
                     <button type="button" class="profile__edit-button">
-                        
+
                     </button>
                 </div>
 
@@ -38,56 +38,18 @@
         </section>
 
         <section class="elements">
+
             <ul class="elements__list">
-
-                <li class="card">
-                    <img class="card__image" src="./images/karachaevsk.png" alt="Карачаевск">
-                    <div class="card__signature">
-                        <h2 class="card__title">Карачаевск</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/Elbrus.png" alt="Гора Эльбрус">
-                    <div class="card__signature">
-                        <h2 class="card__title">Гора Эльбрус</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/Dombai.png" alt="Домбай">
-                    <div class="card__signature">
-                        <h2 class="card__title">Домбай</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/Peterburg.jpg" alt="Санкт-Петербург">
-                    <div class="card__signature">
-                        <h2 class="card__title">Санкт-Петербург</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/Sochi.jpg" alt="Сочи">
-                    <div class="card__signature">
-                        <h2 class="card__title">Сочи</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-
-                <li class="card">
-                    <img class="card__image" src="./images/Kaliningrad.jpg" alt="Калининградская область">
-                    <div class="card__signature">
-                        <h2 class="card__title">Калининградская область</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </li>
-
+                <template class="elements__list-template">
+                    <li class="card">
+                        <button type="button" class="card__trash"></button>
+                        <img class="card__image" src="./images/karachaevsk.png" alt="">
+                        <div class="card__signature">
+                            <h2 class="card__title"></h2>
+                            <button type="button" class="card__like"></button>
+                        </div>
+                    </li>
+                </template>
             </ul>
         </section>
     </main>
@@ -109,6 +71,26 @@
                     placeholder="" required>
 
                 <button class="popup__save" type='submit'>Сохранить</button>
+
+            </form>
+
+        </div>
+    </section>
+
+    <section class="popup newplace">
+        <div class="popup__container">
+            <button type="button" class="popup__close newplace__close"></button>
+            <h2 class="popup__header">Новое место</h2>
+
+            <form action="#" method="post" class="popup__forms newplace__forms" name="editUserImage">
+
+                <input class="popup__form-item newplace__form-input" type="text" name="popup__imagename"
+                    value="Название" id="popup__imagename" placeholder="" required>
+
+                <input class="popup__form-item newplace__form-link" type="text" name="popup__link"
+                    value="Ссылка на картинку" id="popup__link" placeholder="" required>
+
+                <button class="popup__save newplace__save" type='submit'>Создать</button>
 
             </form>
 

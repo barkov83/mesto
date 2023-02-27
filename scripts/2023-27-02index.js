@@ -70,9 +70,27 @@ const initialCards = [
 	},
 ];
 
+initialCards.forEach(function (listCards) {
+	const CloneElementsListTemplate = elementsListTemplate.cloneNode(true);
+	CloneElementsListTemplate.querySelector('.card__title').textContent = listCards.name;
+	CloneElementsListTemplate.querySelector('.card__image').src = listCards.link
+	elementsList.append(CloneElementsListTemplate)
+});
+
+const newplaceFormInput = document.querySelector('.newplace__form-input');
+const newplaceFormLink = document.querySelector('.newplace__form-link');
+const formElementNewPlace = document.querySelector('.newplace__forms');
+
+
 const addButton = document.querySelector('.profile__add-button');
 const newplace = document.querySelector('.newplace')
 const closeButtonNewPlace = document.querySelector(".newplace__close");
+
+let nameNewplace = document.querySelector('.card__title');
+let linkNewplace = document.querySelector('.card__image');
+
+let fromNameNewplace = document.querySelector('#popup__imagename');
+let fromLinkNewplace = document.querySelector('#popup__link');
 
 const toggleOpenPopupNewPlace = () => {
 	newplace.classList.toggle('popup_opened');
@@ -90,29 +108,15 @@ addButton.addEventListener('click', handlerOpenAddButtonClick);
 closeButtonNewPlace.addEventListener('click', handlerCloseAddButtonClick);
 
 
-const cardsTemplate = document.querySelector('#cards-template').content;
+function newPlaceFormSubmitHandler(evt) {
+	evt.preventDefault();
 
-const renderCard = ({ name, link }) => {
-	const placeElement = cardsTemplate.querySelector('.card').cloneNode(true);
-	placeElement.querySelector('.card__image').src = link;
-	placeElement.querySelector('.card__image').alt = name;
-	placeElement.querySelector('.card__title').textContent = name;
+	CloneElementsListTemplate.querySelector('.card__title').textContent = newplaceFormInput.value,
+		CloneElementsListTemplate.querySelector('.card__image').src = newplaceFormLink.value,
+		elementsList.prepend(elementsListTemplate),
 
-const likeButton = placeElement.querySelector('.card__like');
-likeActive = () => {
-	likeButton.classList.add('card__like_active');
-}
-likeButton.addEventListener('click', likeActive);
+		evt.target.reset();
 
-const trashButton = placeElement.querySelector('.card__trash');
-trashActive = () => {
-	placeElement.remove();
-}
-trashButton.addEventListener('click', trashActive);
-
-return placeElement;
 }
 
-elementsList.append(renderCard);
-
-console.log(elementsList);
+formElementNewPlace.addEventListener('submit', newPlaceFormSubmitHandler);

@@ -92,7 +92,7 @@ closeButtonNewPlace.addEventListener('click', handlerCloseAddButtonClick);
 
 const cardsTemplate = document.querySelector('#cards-template').content;
 
-const renderCard = ({ name, link }) => {
+const renderCard = (name, link) => {
 	const placeElement = cardsTemplate.querySelector('.card').cloneNode(true);
 	placeElement.querySelector('.card__image').src = link;
 	placeElement.querySelector('.card__image').alt = name;
@@ -113,6 +113,6 @@ trashButton.addEventListener('click', trashActive);
 return placeElement;
 }
 
-elementsList.append(renderCard);
-
-console.log(elementsList);
+initialCards.forEach((name, link) => {
+	elementsList.append(renderCard(name, link));
+})

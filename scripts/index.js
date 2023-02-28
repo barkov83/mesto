@@ -92,15 +92,15 @@ closeButtonNewPlace.addEventListener('click', handlerCloseAddButtonClick);
 
 const cardsTemplate = document.querySelector('#cards-template').content;
 
-const renderCard = (name, link) => {
+const renderCard = (item) => {
 	const placeElement = cardsTemplate.querySelector('.card').cloneNode(true);
-	placeElement.querySelector('.card__image').src = link;
-	placeElement.querySelector('.card__image').alt = name;
-	placeElement.querySelector('.card__title').textContent = name;
+	placeElement.querySelector('.card__image').src = item.link;
+	placeElement.querySelector('.card__image').alt = item.name;
+	placeElement.querySelector('.card__title').textContent = item.name;
 
 const likeButton = placeElement.querySelector('.card__like');
 likeActive = () => {
-	likeButton.classList.add('card__like_active');
+	likeButton.classList.toggle('card__like_active');
 }
 likeButton.addEventListener('click', likeActive);
 
@@ -113,6 +113,26 @@ trashButton.addEventListener('click', trashActive);
 return placeElement;
 }
 
-initialCards.forEach((name, link) => {
-	elementsList.append(renderCard(name, link));
+initialCards.forEach((item) => {
+	elementsList.append(renderCard(item));
 })
+
+
+const nameNewplaceFormInput = document.querySelector('.newplace__form-input');
+const newplaceFormLink = document.querySelector('.newplace__form-link');
+
+const formElementNewPlace = document.querySelector('.newplace__forms');
+
+const addCardNewPlace = (evt) => {
+	evt.preventDefault();
+
+	elementsList.prepend(renderCard({
+		name: nameNewplaceFormInput.value,
+		link: newplaceFormLink.value,
+	  }));
+
+	  evt.target.reset();
+	  toggleOpenPopupNewPlace();
+}
+
+formElementNewPlace.addEventListener('submit', addCardNewPlace);

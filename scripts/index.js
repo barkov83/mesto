@@ -89,7 +89,7 @@ const handlerCloseAddButtonClick = () => {
 addButton.addEventListener('click', handlerOpenAddButtonClick);
 closeButtonNewPlace.addEventListener('click', handlerCloseAddButtonClick);
 
-
+/*появление 6-ти карточек при загрузке страницы*/
 const cardsTemplate = document.querySelector('#cards-template').content;
 
 const renderCard = (item) => {
@@ -98,19 +98,46 @@ const renderCard = (item) => {
 	placeElement.querySelector('.card__image').alt = item.name;
 	placeElement.querySelector('.card__title').textContent = item.name;
 
-const likeButton = placeElement.querySelector('.card__like');
-likeActive = () => {
-	likeButton.classList.toggle('card__like_active');
-}
-likeButton.addEventListener('click', likeActive);
+	const likeButton = placeElement.querySelector('.card__like');
+	likeActive = () => {
+		likeButton.classList.toggle('card__like_active');
+	}
+	likeButton.addEventListener('click', likeActive);
 
-const trashButton = placeElement.querySelector('.card__trash');
-trashActive = () => {
-	placeElement.remove();
-}
-trashButton.addEventListener('click', trashActive);
+	const trashButton = placeElement.querySelector('.card__trash');
+	trashActive = () => {
+		placeElement.remove();
+	}
+	trashButton.addEventListener('click', trashActive);
 
-return placeElement;
+	/*открытие окна с большой картинкой*/
+	const clickOnCardImage = placeElement.querySelector('.card__image');
+	const bigPopupWindow = document.querySelector('.big-window');
+
+	const closeBigPopupWindow = document.querySelector('.big-window__close');
+
+	const photoInWindow = document.querySelector('.big-window__image');
+	const namePhotoInWindow = document.querySelector('.big-window__caption');
+
+	const nameImageAtClick = placeElement.querySelector('.card__signature');
+
+
+	openBigPopupWindow = () => {
+		bigPopupWindow.classList.add('popup_opened');
+		photoInWindow.src = clickOnCardImage.src;
+		photoInWindow.alt = clickOnCardImage.alt;
+		namePhotoInWindow.textContent = nameImageAtClick.textContent;
+	}
+
+	closeTheBigPopupWindow = () => {
+		bigPopupWindow.classList.remove('popup_opened');
+	}
+
+	clickOnCardImage.addEventListener('click', openBigPopupWindow);
+	closeBigPopupWindow.addEventListener('click', closeTheBigPopupWindow);
+
+	console.log(clickOnCardImage.textContent);
+	return placeElement;
 }
 
 initialCards.forEach((item) => {
@@ -129,10 +156,11 @@ const addCardNewPlace = (evt) => {
 	elementsList.prepend(renderCard({
 		name: nameNewplaceFormInput.value,
 		link: newplaceFormLink.value,
-	  }));
+	}));
 
-	  evt.target.reset();
-	  toggleOpenPopupNewPlace();
+	evt.target.reset();
+	toggleOpenPopupNewPlace();
 }
 
 formElementNewPlace.addEventListener('submit', addCardNewPlace);
+

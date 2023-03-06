@@ -136,7 +136,6 @@ const renderCard = (item) => {
 	clickOnCardImage.addEventListener('click', openBigPopupWindow);
 	closeBigPopupWindow.addEventListener('click', closeTheBigPopupWindow);
 
-	console.log(clickOnCardImage.textContent);
 	return placeElement;
 }
 

@@ -1,4 +1,4 @@
 .big-window__image {
-    height: 540px;
-    width: 433px;
+    max-width: 75vw;
+    max-height: 75vh;
 }

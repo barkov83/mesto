@@ -168,3 +168,15 @@ const addCardNewPlace = (evt) => {
 
 formElementNewPlace.addEventListener('submit', addCardNewPlace);
 
+
+// закрытие popup при клике на оверлей:
+
+const popup = document.querySelector('.popup');
+
+const closePopupClickOnOverlay = (event) => {
+	if (event.target === event.currentTarget) {
+		closePopup(popup);
+	}
+}
+
+popup.addEventListener("click", closePopupClickOnOverlay);

@@ -97,7 +97,6 @@ buttonCloseAddNewPlace.addEventListener('click', handlerCloseAddButtonClick);
 const cardsTemplate = document.querySelector('#cards-template').content;
 
 const bigPopupWindow = document.querySelector('.big-window');
-const closeBigPopupWindow = document.querySelector('.big-window__close');
 const photoInWindow = document.querySelector('.big-window__image');
 const namePhotoInWindow = document.querySelector('.big-window__caption');
 
@@ -131,15 +130,9 @@ const renderCard = (item) => {
 		photoInWindow.src = item.link;
 		photoInWindow.alt = item.name;
 		namePhotoInWindow.textContent = nameImageAtClick.textContent;
-
-	}
-
-	closeTheBigPopupWindow = () => {
-		closePopup(bigPopupWindow);
 	}
 
 	clickOnCardImage.addEventListener('click', openBigPopupWindow);
-	closeBigPopupWindow.addEventListener('click', closeTheBigPopupWindow);
 
 	return placeElement;
 }
@@ -170,13 +163,11 @@ formElementNewPlace.addEventListener('submit', addCardNewPlace);
 
 
 // закрытие popup при клике на оверлей:
-
-const popup = document.querySelector('.popup');
-
-const closePopupClickOnOverlay = (event) => {
-	if (event.target === event.currentTarget) {
-		closePopup(popup);
-	}
-}
-
-popup.addEventListener("click", closePopupClickOnOverlay);
+const popupList = document.querySelectorAll('.popup');
+popupList.forEach((popupElement) => {
+	popupElement.addEventListener('click', function (evt) {
+		if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close')) {
+			closePopup(popupElement);
+		}
+	});
+});

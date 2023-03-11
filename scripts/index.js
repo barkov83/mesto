@@ -1,6 +1,5 @@
-const aboutButton = document.querySelector(".profile__edit-button");
+const buttonEditProfile = document.querySelector(".profile__edit-button");
 const popupProfile = document.querySelector(".popup-profile");
-const closeButton = document.querySelector(".popup__close");
 
 const nameInput = document.querySelector(".profile__title");
 const jobInput = document.querySelector(".profile__subtitle");
@@ -17,39 +16,36 @@ const closePopup = (popupElement) => {
 	popupElement.classList.remove('popup_opened');
 }
 
-const handlerAboutButtonClick = () => {
+const handleButtonEditProfile = () => {
 	openPopup(popupProfile);
 
 	fromNameInput.value = nameInput.textContent;
 	fromJobInput.value = jobInput.textContent;
 };
 
-const handlerCloseButtonClick = () => {
+
+const handleButtonClosePopupEditProfile = () => {
 	closePopup(popupProfile);
 };
 
-aboutButton.addEventListener("click", handlerAboutButtonClick);
-closeButton.addEventListener("click", handlerCloseButtonClick);
+buttonEditProfile.addEventListener("click", handleButtonEditProfile);
 
 
-
-const formElementEditProfile = document.querySelector(".popup__forms");
+const formElementEditProfile = document.querySelector(".popup__forms_edit-profile");
 
 function handleSubmitEditProfile(evt) {
 	evt.preventDefault();
 
 	nameInput.textContent = fromNameInput.value;
 	jobInput.textContent = fromJobInput.value;
-	handlerCloseButtonClick();
+	handleButtonClosePopupEditProfile();
 }
 
 formElementEditProfile.addEventListener('submit', handleSubmitEditProfile);
 
 
-
-const elementsList = document.querySelector('.elements__list');
-const elementsListTemplate = document.querySelector('.elements__list-template').content;
-
+const elementsContainer = document.querySelector('.elements__list');
+const elementsContainerTemplate = document.querySelector('.elements__list-template').content;
 
 const initialCards = [
 	{
@@ -78,30 +74,23 @@ const initialCards = [
 	},
 ];
 
-const addButton = document.querySelector('.profile__add-button');
+const buttonAddNewplace = document.querySelector('.profile__add-button');
 const newplace = document.querySelector('.newplace')
-const buttonCloseAddNewPlace = document.querySelector(".newplace__close");
 
-const handlerOpenAddButtonClick = () => {
+const handleOpenButtonAddNewplaceClick = () => {
 	openPopup(newplace);
 }
 
-const handlerCloseAddButtonClick = () => {
-	closePopup(newplace);
-}
+buttonAddNewplace.addEventListener('click', handleOpenButtonAddNewplaceClick);
 
-addButton.addEventListener('click', handlerOpenAddButtonClick);
-buttonCloseAddNewPlace.addEventListener('click', handlerCloseAddButtonClick);
 
 /*появление 6-ти карточек при загрузке страницы*/
-const cardsTemplate = document.querySelector('#cards-template').content;
-
-const bigPopupWindow = document.querySelector('.big-window');
+const popupNewplaceWindow = document.querySelector('.big-window');
 const photoInWindow = document.querySelector('.big-window__image');
 const namePhotoInWindow = document.querySelector('.big-window__caption');
 
 const renderCard = (item) => {
-	const placeElement = cardsTemplate.querySelector('.card').cloneNode(true);
+	const placeElement = elementsContainerTemplate.querySelector('.card').cloneNode(true);
 	const cardImage = placeElement.querySelector('.card__image');
 	cardImage.src = item.link;
 	cardImage.alt = item.name;
@@ -122,23 +111,22 @@ const renderCard = (item) => {
 
 	/*открытие окна с большой картинкой*/
 	const clickOnCardImage = cardImage;
-	const nameImageAtClick = placeElement.querySelector('.card__signature');
 
-	openBigPopupWindow = () => {
-		openPopup(bigPopupWindow);
+	openPopupNewplaceWindow = () => {
+		openPopup(popupNewplaceWindow);
 
 		photoInWindow.src = item.link;
 		photoInWindow.alt = item.name;
-		namePhotoInWindow.textContent = nameImageAtClick.textContent;
+		namePhotoInWindow.textContent = item.name;
 	}
 
-	clickOnCardImage.addEventListener('click', openBigPopupWindow);
+	clickOnCardImage.addEventListener('click', openPopupNewplaceWindow);
 
 	return placeElement;
 }
 
 initialCards.forEach((item) => {
-	elementsList.append(renderCard(item));
+	elementsContainer.append(renderCard(item));
 })
 
 
@@ -150,7 +138,7 @@ const formElementNewPlace = document.querySelector('.newplace__forms');
 const addCardNewPlace = (evt) => {
 	evt.preventDefault();
 
-	elementsList.prepend(renderCard({
+	elementsContainer.prepend(renderCard({
 		name: nameNewplaceFormInput.value,
 		link: newplaceFormLink.value,
 	}));

@@ -10,6 +10,14 @@ const fromJobInput = document.querySelector('#popup__vocation');
 
 function openPopup(popupElement) {
 	popupElement.classList.add('popup_opened');
+	document.addEventListener('keydown', closePopupOnEscape);
+}
+
+const closePopupOnEscape = (evt) => {
+	if (evt.key === "Escape") {
+		const popupOpened = document.querySelector('.popup_opened');
+		closePopup(popupOpened);
+	}
 }
 
 const closePopup = (popupElement) => {
@@ -159,3 +167,42 @@ popupList.forEach((popupElement) => {
 		}
 	});
 });
+
+// блок по изменению состояния кнопки Сохранить в попапе Редактировать профиль
+const formEditUserProfile = document.forms.editUserProfile;
+formEditUserProfile.addEventListener('input', function (evt) {
+	const isValid = (fromNameInput.value.length > 0 && fromJobInput.value.length > 0);
+	setSubmitButtonStateEditProfile(isValid);
+});
+
+const buttonSaveEditProfile = document.querySelector('.popup__save_edit-profile');
+
+function setSubmitButtonStateEditProfile(isFormValid) {
+	if (isFormValid) {
+		buttonSaveEditProfile.removeAttribute('disabled');
+		buttonSaveEditProfile.classList.remove('popup__save_disabled');
+	} else {
+		buttonSaveEditProfile.setAttribute('disabled', true);
+		buttonSaveEditProfile.classList.add('popup__save_disabled');
+	}
+};
+
+//блок по изменению состояния кнопки Сохранить в попапе Добавить новое место
+const formEditUserImage = document.forms.editUserImage;
+const buttonSaveAddNewplace = document.querySelector('.newplace__save');
+
+formEditUserImage.addEventListener('input', function (evt) {
+	const isValidPopupNewplace = (nameNewplaceFormInput.value.length > 0 && newplaceFormLink.value.length > 0);
+	setSubmitButtonStateAddNewplace(isValidPopupNewplace);
+});
+
+function setSubmitButtonStateAddNewplace(isFormValids) {
+	if (isFormValids) {
+		buttonSaveAddNewplace.removeAttribute('disabled');
+		buttonSaveAddNewplace.classList.remove('popup__save_disabled');
+	} else {
+		buttonSaveAddNewplace.setAttribute('disabled', true);
+		buttonSaveAddNewplace.classList.add('popup__save_disabled');
+	}
+};
+

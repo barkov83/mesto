@@ -38,6 +38,8 @@
 @import url(../blocks/popup/__save/popup__save.css);
 @import url(../blocks/popup/__forms/popup__forms.css);
 
+@import url(../blocks/popup/__save/_btn-disabled/popup__save_disabled.css);
+
 @import url(../blocks/newplace/__form-input/newplace__form-input.css);
 
 @import url(../blocks/big-window/big-window.css);

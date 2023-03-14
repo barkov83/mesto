@@ -63,15 +63,18 @@
             <button type="button" class="popup__close"></button>
             <h2 class="popup__header">Редактировать профиль</h2>
 
-            <form action="#" method="post" class="popup__forms popup__forms_edit-profile" name="editUserProfile">
+            <form action="#" method="post" class="popup__forms popup__forms_edit-profile form" name="editUserProfile"
+                novalidate>
 
-                <input class="popup__form-item" type="text" name="popup__username" value="" id="popup__username"
-                    placeholder="" required>
+                <input class="popup__form-item form__input" type="text" name="popup__username" value=""
+                    id="popup__username" placeholder="Имя" minlength="2" maxlength="40" required>
+                <span class="popup__username_message-error form__input-error">Вы пропустили это поле</span>
 
-                <input class="popup__form-item" type="text" name="popup__vocation" value="" id="popup__vocation"
-                    placeholder="" required>
+                <input class="popup__form-item form__input" type="text" name="popup__vocation" value=""
+                    id="popup__vocation" placeholder="О себе" minlength="2" maxlength="200" required>
+                <span class="popup__vocation_message-error form__input-error">Вы пропустили это поле</span>
 
-                <button class="popup__save popup__save_edit-profile popup__save_disabled" type='submit'
+                <button class="popup__save popup__save_edit-profile popup__save_disabled form__submit" type='submit'
                     disabled>Сохранить</button>
 
             </form>
@@ -84,15 +87,17 @@
             <button type="button" class="popup__close newplace__close"></button>
             <h2 class="popup__header">Новое место</h2>
 
-            <form action="#" method="post" class="popup__forms newplace__forms" name="editUserImage">
+            <form action="#" method="post" class="popup__forms newplace__forms" name="editUserImage" novalidate>
 
-                <input class="popup__form-item newplace__form-input" type="text" name="popup__imagename"
-                    placeholder="Название" id="popup__imagename" required>
+                <input class="popup__form-item newplace__form-input form__input" type="text" name="popup__imagename"
+                    placeholder="Название" id="popup__imagename" minlength="2" maxlength="40" required>
+                <span class="popup__imagename_message-error form__input-error">Вы пропустили это поле</span>
 
-                <input class="popup__form-item newplace__form-link" type="text" name="popup__link"
+                <input class="popup__form-item newplace__form-link form__input" type="url" name="popup__link"
                     placeholder="Ссылка на картинку" id="popup__link" required>
+                <span class="popup__link_message-error form__input-error">Введите адрес сайта</span>
 
-                <button class="popup__save newplace__save popup__save_disabled" type='submit' disabled>Создать</button>
+                <button class="popup__save newplace__save popup__save_disabled form__submit" type='submit' disabled>Создать</button>
             </form>
 
         </div>

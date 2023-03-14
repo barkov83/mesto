@@ -168,41 +168,93 @@ popupList.forEach((popupElement) => {
 	});
 });
 
-// блок по изменению состояния кнопки Сохранить в попапе Редактировать профиль
-const formEditUserProfile = document.forms.editUserProfile;
-formEditUserProfile.addEventListener('input', function (evt) {
-	const isValid = (fromNameInput.value.length > 0 && fromJobInput.value.length > 0);
-	setSubmitButtonStateEditProfile(isValid);
-});
 
-const buttonSaveEditProfile = document.querySelector('.popup__save_edit-profile');
+// код из упражнения про валидацию
+const showInputError = (formElement, inputElement, errorMessage) => {
+	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+	inputElement.classList.add('form__input_type_error');
+	errorElement.textContent = errorMessage;
+	errorElement.classList.add('form__input-error_active');
+};
 
-function setSubmitButtonStateEditProfile(isFormValid) {
-	if (isFormValid) {
-		buttonSaveEditProfile.removeAttribute('disabled');
-		buttonSaveEditProfile.classList.remove('popup__save_disabled');
+const hideInputError = (formElement, inputElement) => {
+	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+	inputElement.classList.remove('form__input_type_error');
+	errorElement.classList.remove('form__input-error_active');
+	errorElement.textContent = '';
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+	if (!inputElement.validity.valid) {
+		showInputError(formElement, inputElement, formInput.validationMessage);
 	} else {
-		buttonSaveEditProfile.setAttribute('disabled', true);
-		buttonSaveEditProfile.classList.add('popup__save_disabled');
+		hideInputError(formElement, inputElement);
 	}
 };
 
-//блок по изменению состояния кнопки Сохранить в попапе Добавить новое место
-const formEditUserImage = document.forms.editUserImage;
-const buttonSaveAddNewplace = document.querySelector('.newplace__save');
+function setEventListeners(formElement) {
+	const inputList = Array.from(formElement.querySelectorAll('.form__input'));
+	const buttonElement = formElement.querySelector('.form__submit');
 
-formEditUserImage.addEventListener('input', function (evt) {
-	const isValidPopupNewplace = (nameNewplaceFormInput.value.length > 0 && newplaceFormLink.value.length > 0);
-	setSubmitButtonStateAddNewplace(isValidPopupNewplace);
-});
+	// чтобы проверить состояние кнопки в самом начале
+	toggleButtonState(inputList, buttonElement);
 
-function setSubmitButtonStateAddNewplace(isFormValids) {
-	if (isFormValids) {
-		buttonSaveAddNewplace.removeAttribute('disabled');
-		buttonSaveAddNewplace.classList.remove('popup__save_disabled');
-	} else {
-		buttonSaveAddNewplace.setAttribute('disabled', true);
-		buttonSaveAddNewplace.classList.add('popup__save_disabled');
+	inputList.forEach((inputElement) => {
+		inputElement.addEventListener('input', function () {
+			checkInputValidity(formElement, inputElement);
+
+			// чтобы проверять его при изменении любого из полей
+			toggleButtonState(inputList, buttonElement);
+		});
+	});
+}
+
+function enableValidation() {
+	const formList = Array.from(document.querySelectorAll('.form'));
+	formList.forEach((formElement) => {
+		formElement.addEventListener('submit', (evt) => {
+			evt.preventDefault();
+		});
+
+		const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));
+
+		fieldsetList.forEach((fieldSet) => {
+			setEventListeners(fieldSet);
+		});
 	}
+	)
+}
+
+enableValidation();
+
+
+/* Функция принимает массив полей. нужно проверить все поля, 
+чтобы настроить статус кнопки. Если все поля валидны — 
+активировать кнопку, если хотя бы одно нет — заблокировать.*/
+const hasInvalidInput = (inputList) => {
+	// проходим по этому массиву методом some
+	return inputList.some((inputElement) => {
+		// Если поле не валидно, колбэк вернёт true
+		// Обход массива прекратится и вся функция
+		// hasInvalidInput вернёт true
+
+		return !inputElement.validity.valid;
+	})
 };
 
+/* Функция принимает массив полей ввода и элемент кнопки, состояние которой нужно менять */
+/*Для стилизации нужна функция toggleButtonState. Именно она отключает и включает кнопку.
+ля этого функция hasInvalidInput проверяет валидность полей и возвращает true или false. 
+На их основе toggleButtonState меняет состояние кнопки:
+inputList -  массив полей, и buttonElement — кнопка «Далее».*/
+
+const toggleButtonState = (inputList, buttonElement) => {
+	// Если есть хотя бы один невалидный инпут
+	if (hasInvalidInput(inputList)) {
+		// сделай кнопку неактивной
+		buttonElement.classList.add('button_inactive');
+	} else {
+		// иначе сделай кнопку активной
+		buttonElement.classList.remove('button_inactive');
+	}
+};

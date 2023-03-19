@@ -18,7 +18,7 @@
     transition: 0.2s;
 }
 
-.popup__save:hover:not([disabled]) {
+.popup__save:hover {
     background: rgba(0, 0, 0, 0.8);
 }
 

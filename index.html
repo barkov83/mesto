@@ -63,19 +63,33 @@
             <button type="button" class="popup__close"></button>
             <h2 class="popup__header">Редактировать профиль</h2>
 
-            <form action="#" method="post" class="popup__forms popup__forms_edit-profile form" name="editUserProfile"
-                novalidate>
+            <form action="#" method="post" class="popup__forms popup__forms_edit-profile" name="editUserProfile" >
 
-                <input class="popup__form-item form__input" type="text" name="popup__username" value=""
-                    id="popup__username" placeholder="Имя" minlength="2" maxlength="40" required>
-                <span class="popup__username_message-error form__input-error">Вы пропустили это поле</span>
+                <input 
+                class="popup__form-item" 
+                type="text" 
+                name="popup__username" 
+                value="" 
+                id="popup__username"
+                placeholder="Имя"
+                minlength="2" maxlength="40"
+                required>
 
-                <input class="popup__form-item form__input" type="text" name="popup__vocation" value=""
-                    id="popup__vocation" placeholder="О себе" minlength="2" maxlength="200" required>
-                <span class="popup__vocation_message-error form__input-error">Вы пропустили это поле</span>
+                <span id="popup__username-error" class="error"></span>
 
-                <button class="popup__save popup__save_edit-profile popup__save_disabled form__submit" type='submit'
-                    disabled>Сохранить</button>
+                <input 
+                class="popup__form-item" 
+                type="text" 
+                name="popup__vocation" 
+                value="" 
+                id="popup__vocation"
+                placeholder="О себе"
+                minlength="2" maxlength="200" 
+                required>
+
+                <span id="popup__vocation-error" class="error"></span>
+
+                <button class="popup__save" type='submit'>Сохранить</button>
 
             </form>
 
@@ -87,17 +101,30 @@
             <button type="button" class="popup__close newplace__close"></button>
             <h2 class="popup__header">Новое место</h2>
 
-            <form action="#" method="post" class="popup__forms newplace__forms" name="editUserImage" novalidate>
+            <form action="#" method="post" class="popup__forms newplace__forms" name="editUserImage">
 
-                <input class="popup__form-item newplace__form-input form__input" type="text" name="popup__imagename"
-                    placeholder="Название" id="popup__imagename" minlength="2" maxlength="40" required>
-                <span class="popup__imagename_message-error form__input-error">Вы пропустили это поле</span>
+                <input 
+                class="popup__form-item newplace__form-input" 
+                type="text" 
+                name="popup__imagename"
+                placeholder="Название" 
+                id="popup__imagename"
+                minlength="2" maxlength="40"
+                required>
 
-                <input class="popup__form-item newplace__form-link form__input" type="url" name="popup__link"
-                    placeholder="Ссылка на картинку" id="popup__link" required>
-                <span class="popup__link_message-error form__input-error">Введите адрес сайта</span>
+                <span id="popup__imagename-error" class="error"></span>
 
-                <button class="popup__save newplace__save popup__save_disabled form__submit" type='submit' disabled>Создать</button>
+                <input 
+                class="popup__form-item newplace__form-link" 
+                type="url" 
+                name="popup__link"
+                placeholder="Ссылка на картинку" 
+                id="popup__link" 
+                required>
+
+                <span id="popup__link-error" class="error"></span>
+
+                <button class="popup__save newplace__save" type='submit'>Создать</button>
             </form>
 
         </div>
@@ -114,6 +141,7 @@
     </section>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

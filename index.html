@@ -63,29 +63,15 @@
             <button type="button" class="popup__close"></button>
             <h2 class="popup__header">Редактировать профиль</h2>
 
-            <form action="#" method="post" class="popup__forms popup__forms_edit-profile" name="editUserProfile" >
+            <form action="#" method="post" class="popup__forms" id="editUserProfile" name="editUserProfile">
 
-                <input 
-                class="popup__form-item" 
-                type="text" 
-                name="popup__username" 
-                value="" 
-                id="popup__username"
-                placeholder="Имя"
-                minlength="2" maxlength="40"
-                required>
+                <input class="popup__form-item" type="text" name="popup__username" value="" id="popup__username"
+                    placeholder="Имя" minlength="2" maxlength="40" required>
 
                 <span id="popup__username-error" class="error"></span>
 
-                <input 
-                class="popup__form-item" 
-                type="text" 
-                name="popup__vocation" 
-                value="" 
-                id="popup__vocation"
-                placeholder="О себе"
-                minlength="2" maxlength="200" 
-                required>
+                <input class="popup__form-item" type="text" name="popup__vocation" value="" id="popup__vocation"
+                    placeholder="О себе" minlength="2" maxlength="200" required>
 
                 <span id="popup__vocation-error" class="error"></span>
 
@@ -101,26 +87,15 @@
             <button type="button" class="popup__close newplace__close"></button>
             <h2 class="popup__header">Новое место</h2>
 
-            <form action="#" method="post" class="popup__forms newplace__forms" name="editUserImage">
+            <form action="#" method="post" class="popup__forms" id="editUserImage" name="editUserImage">
 
-                <input 
-                class="popup__form-item newplace__form-input" 
-                type="text" 
-                name="popup__imagename"
-                placeholder="Название" 
-                id="popup__imagename"
-                minlength="2" maxlength="40"
-                required>
+                <input class="popup__form-item" type="text" name="popup__imagename" placeholder="Название"
+                    id="popup__imagename" minlength="2" maxlength="40" required>
 
                 <span id="popup__imagename-error" class="error"></span>
 
-                <input 
-                class="popup__form-item newplace__form-link" 
-                type="url" 
-                name="popup__link"
-                placeholder="Ссылка на картинку" 
-                id="popup__link" 
-                required>
+                <input class="popup__form-item" type="url" name="popup__link" placeholder="Ссылка на картинку"
+                    id="popup__link" required>
 
                 <span id="popup__link-error" class="error"></span>
 
@@ -130,18 +105,26 @@
         </div>
     </section>
 
-    <section class="popup big-window">
-        <div class="big-window__container">
-            <button type="button" class="popup__close big-window__close"></button>
-            <img class="big-window__image" src="./images/karachaevsk.png" alt="">
-            <p class="big-window__caption">Название изображения</p>
+    <section class="popup popup__big-window ">
+        <div class="popup__big-window-container">
+            <button type="button" class="popup__close"></button>
+            <img class="popup__big-window-image" src="./images/karachaevsk.png" alt="">
+            <p class="popup__big-window-caption">Название изображения</p>
         </div>
 
 
     </section>
 
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/dataarray.js"></script>
     <script src="./scripts/validate.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>
+
+<!-- переименовать классы
+big-window => popup__big-window +
+big-window__container => popup__big-window-container +
+big-window__image => popup__big-window-image
+big-window__caption => popup__big-window-caption
+ -->

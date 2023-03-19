@@ -7,10 +7,19 @@ const jobInput = document.querySelector(".profile__subtitle");
 const fromNameInput = document.querySelector('#popup__username');
 const fromJobInput = document.querySelector('#popup__vocation');
 
+function disableButtonSubmit() {
+	const buttonSubmitDisabled = Array.from(document.querySelectorAll('.popup__save'));
+	buttonSubmitDisabled.forEach((item) => {
+		buttonSubmitDisabled.disabled = true;
+		item.classList.add('.popup__save_disabled');
+		console.log(item);
+	});
+};
 
 function openPopup(popupElement) {
 	popupElement.classList.add('popup_opened');
 	document.addEventListener('keydown', closePopupOnEscape);
+	disableButtonSubmit();
 }
 
 const closePopupOnEscape = (evt) => {
@@ -22,6 +31,7 @@ const closePopupOnEscape = (evt) => {
 
 const closePopup = (popupElement) => {
 	popupElement.classList.remove('popup_opened');
+	document.removeEventListener('keydown', closePopupOnEscape);
 }
 
 const handleButtonEditProfile = () => {
@@ -39,7 +49,7 @@ const handleButtonClosePopupEditProfile = () => {
 buttonEditProfile.addEventListener("click", handleButtonEditProfile);
 
 
-const formElementEditProfile = document.querySelector(".popup__forms_edit-profile");
+const formElementEditProfile = document.querySelector("#editUserProfile");
 
 function handleSubmitEditProfile(evt) {
 	evt.preventDefault();
@@ -55,33 +65,6 @@ formElementEditProfile.addEventListener('submit', handleSubmitEditProfile);
 const elementsContainer = document.querySelector('.elements__list');
 const elementsContainerTemplate = document.querySelector('.elements__list-template').content;
 
-const initialCards = [
-	{
-		name: 'Архыз',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-	},
-	{
-		name: 'Челябинская область',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-	},
-	{
-		name: 'Иваново',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-	},
-	{
-		name: 'Камчатка',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-	},
-	{
-		name: 'Холмогорский район',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-	},
-	{
-		name: 'Байкал',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-	},
-];
-
 const buttonAddNewplace = document.querySelector('.profile__add-button');
 const newplace = document.querySelector('.newplace')
 
@@ -93,11 +76,11 @@ buttonAddNewplace.addEventListener('click', handleOpenButtonAddNewplaceClick);
 
 
 /*появление 6-ти карточек при загрузке страницы*/
-const popupNewplaceWindow = document.querySelector('.big-window');
-const photoInWindow = document.querySelector('.big-window__image');
-const namePhotoInWindow = document.querySelector('.big-window__caption');
+const popupNewplaceWindow = document.querySelector('.popup__big-window');
+const photoInWindow = document.querySelector('.popup__big-window-image');
+const namePhotoInWindow = document.querySelector('.popup__big-window-caption');
 
-const renderCard = (item) => {
+const createCard = (item) => {
 	const placeElement = elementsContainerTemplate.querySelector('.card').cloneNode(true);
 	const cardImage = placeElement.querySelector('.card__image');
 	cardImage.src = item.link;
@@ -118,8 +101,6 @@ const renderCard = (item) => {
 	trashButton.addEventListener('click', trashActive);
 
 	/*открытие окна с большой картинкой*/
-	const clickOnCardImage = cardImage;
-
 	openPopupNewplaceWindow = () => {
 		openPopup(popupNewplaceWindow);
 
@@ -128,25 +109,25 @@ const renderCard = (item) => {
 		namePhotoInWindow.textContent = item.name;
 	}
 
-	clickOnCardImage.addEventListener('click', openPopupNewplaceWindow);
+	cardImage.addEventListener('click', openPopupNewplaceWindow);
 
 	return placeElement;
 }
 
 initialCards.forEach((item) => {
-	elementsContainer.append(renderCard(item));
+	elementsContainer.append(createCard(item));
 })
 
 
-const nameNewplaceFormInput = document.querySelector('.newplace__form-input');
-const newplaceFormLink = document.querySelector('.newplace__form-link');
+const nameNewplaceFormInput = document.querySelector('#popup__imagename');
+const newplaceFormLink = document.querySelector('#popup__link');
 
-const formElementNewPlace = document.querySelector('.newplace__forms');
+const formElementNewPlace = document.querySelector('#editUserImage');
 
 const addCardNewPlace = (evt) => {
 	evt.preventDefault();
 
-	elementsContainer.prepend(renderCard({
+	elementsContainer.prepend(createCard({
 		name: nameNewplaceFormInput.value,
 		link: newplaceFormLink.value,
 	}));

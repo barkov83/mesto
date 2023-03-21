@@ -67,9 +67,9 @@ buttonAddNewplace.addEventListener('click', handleOpenButtonAddNewplaceClick);
 
 
 /*появление 6-ти карточек при загрузке страницы*/
-const popupNewplaceWindow = document.querySelector('.popup__big-window');
-const photoInWindow = document.querySelector('.popup__big-window-image');
-const namePhotoInWindow = document.querySelector('.popup__big-window-caption');
+const popupNewplaceWindow = document.querySelector('.popup__photo');
+const photoInWindow = document.querySelector('.popup__photo-image');
+const namePhotoInWindow = document.querySelector('.popup__photo-caption');
 
 const createCard = (item) => {
 	const placeElement = elementsContainerTemplate.querySelector('.card').cloneNode(true);

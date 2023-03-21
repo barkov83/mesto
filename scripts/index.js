@@ -67,7 +67,7 @@ buttonAddNewplace.addEventListener('click', handleOpenButtonAddNewplaceClick);
 
 
 /*появление 6-ти карточек при загрузке страницы*/
-const popupNewplaceWindow = document.querySelector('.popup__photo');
+const popupNewplaceWindow = document.querySelector('.popup_photo');
 const photoInWindow = document.querySelector('.popup__photo-image');
 const namePhotoInWindow = document.querySelector('.popup__photo-caption');
 

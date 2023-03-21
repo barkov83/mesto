@@ -62,5 +62,12 @@ function addInputListeners(form, config) {
   });
 }
 
-enableValidation(formValidationConfig);
 
+function disableSubmitButton() {
+  const buttonSubmitDisable = document.querySelector('.newplace__save');
+
+  buttonSubmitDisable.disabled = true;
+  buttonSubmitDisable.classList.add('popup__save_disabled')
+};
+
+enableValidation(formValidationConfig);

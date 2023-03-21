@@ -7,19 +7,10 @@ const jobInput = document.querySelector(".profile__subtitle");
 const fromNameInput = document.querySelector('#popup__username');
 const fromJobInput = document.querySelector('#popup__vocation');
 
-function disableButtonSubmit() {
-	const buttonSubmitDisabled = Array.from(document.querySelectorAll('.popup__save'));
-	buttonSubmitDisabled.forEach((item) => {
-		buttonSubmitDisabled.disabled = true;
-		item.classList.add('.popup__save_disabled');
-		console.log(item);
-	});
-};
-
 function openPopup(popupElement) {
 	popupElement.classList.add('popup_opened');
 	document.addEventListener('keydown', closePopupOnEscape);
-	disableButtonSubmit();
+	disableSubmitButton();
 }
 
 const closePopupOnEscape = (evt) => {
@@ -148,5 +139,3 @@ popupList.forEach((popupElement) => {
 		}
 	});
 });
-
-

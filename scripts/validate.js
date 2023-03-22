@@ -4,7 +4,8 @@ const formValidationConfig = {
   errorClass: 'popup__form-item_type_error',
   buttonSelector: '.popup__save',
   buttonDisabledClass: 'popup__save_disabled',
-}
+  buttonSelectorNewplace: '.newplace__save',
+};
 
 //отключить отправку
 const disableSubmit = (event) => {
@@ -64,10 +65,11 @@ function addInputListeners(form, config) {
 
 
 function disableSubmitButton() {
-  const buttonSubmitDisable = document.querySelector('.newplace__save');
-
+  const buttonSubmitDisable = document.querySelector(formValidationConfig.buttonSelectorNewplace);
+  
   buttonSubmitDisable.disabled = true;
-  buttonSubmitDisable.classList.add('popup__save_disabled')
+  buttonSubmitDisable.classList.add(formValidationConfig.buttonDisabledClass);
 };
+
 
 enableValidation(formValidationConfig);

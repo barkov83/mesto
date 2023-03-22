@@ -1,0 +1,6 @@
+.popup__big-window-container {
+    position: relative;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}

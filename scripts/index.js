@@ -10,7 +10,6 @@ const fromJobInput = document.querySelector('#popup__vocation');
 function openPopup(popupElement) {
 	popupElement.classList.add('popup_opened');
 	document.addEventListener('keydown', closePopupOnEscape);
-	disableSubmitButton();
 }
 
 const closePopupOnEscape = (evt) => {
@@ -61,6 +60,7 @@ const newplace = document.querySelector('.newplace')
 
 const handleOpenButtonAddNewplaceClick = () => {
 	openPopup(newplace);
+	disableSubmitButton();
 }
 
 buttonAddNewplace.addEventListener('click', handleOpenButtonAddNewplaceClick);

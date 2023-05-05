@@ -29,7 +29,7 @@ class FormValidator {
   //вызвать функцию валидации
   enableValidation() {
     this._formElement.addEventListener('submit', () => {
-      this._disableSubmit();
+      this._disableSubmit(event);
     });
     this._formElement.addEventListener('input', () => {
       this._toggleButton();
@@ -40,8 +40,8 @@ class FormValidator {
     // this._handleFormInput();
   }
 
-  _handleFormInput(item) {
-    const input = item.target;
+  _handleFormInput(event) {
+    const input = event.target;
     const inputID = input.id;
     const errorElement = this._formElement.querySelector(`#${inputID}-error`);
 
@@ -69,7 +69,7 @@ class FormValidator {
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     inputList.forEach((item) => {
       item.addEventListener('input', (event) => {
-        this._handleFormInput(item)
+        this._handleFormInput(event)
       })
     });
   }

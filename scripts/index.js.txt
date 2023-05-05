@@ -37,11 +37,12 @@ class FormValidator {
 
     this._addInputListeners();
     this._toggleButton();
-    // this._handleFormInput();
+    this._handleFormInput();
   }
 
-  _handleFormInput(item) {
-    const input = item.target;
+  _handleFormInput(formElement, item) {
+    // const input = this._formElement.querySelector('.popup__form-item');
+    // console.log(input);
     const inputID = input.id;
     const errorElement = this._formElement.querySelector(`#${inputID}-error`);
 
@@ -59,7 +60,6 @@ class FormValidator {
   _toggleButton() {
     const buttonSubmit = this._formElement.querySelector('.popup__save');
     const isFormValid = this._formElement.checkValidity();
-    
     buttonSubmit.disabled = !isFormValid;
     buttonSubmit.classList.toggle('popup__save_disabled', !isFormValid);
   }

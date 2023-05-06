@@ -69,14 +69,6 @@ const handleOpenButtonAddNewplaceClick = () => {
 buttonAddNewplace.addEventListener('click', handleOpenButtonAddNewplaceClick);
 
 
-/*появление 6-ти карточек при загрузке страницы*/
-const popupNewplaceWindow = document.querySelector('.popup_photo');
-const photoInWindow = document.querySelector('.popup__photo-image');
-const namePhotoInWindow = document.querySelector('.popup__photo-caption');
-
-
-
-
 const createCard = ((item) => {
 	const card = new Card(item, '.elements__list-template');
 	const cardElement = card.generateCard();
@@ -113,6 +105,14 @@ popupList.forEach((popupElement) => {
 		}
 	});
 });
+
+// сделать кнопку отправки НЕактивной
+function disableSubmitButton() {
+    const buttonSubmitDisable = document.querySelector(formValidationConfig.buttonSelectorNewplace);
+
+    buttonSubmitDisable.disabled = true;
+    buttonSubmitDisable.classList.add(formValidationConfig.buttonDisabledClass);
+};
 
 const profileFormValidator = new FormValidator(formValidationConfig, formElementEditProfile);
 const newCardFormValidator = new FormValidator(formValidationConfig, formElementNewPlace);

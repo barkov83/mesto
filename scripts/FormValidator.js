@@ -61,9 +61,3 @@ export default class FormValidator {
         });
     }
 }
-function disableSubmitButton() {
-    const buttonSubmitDisable = document.querySelector(formValidationConfig.buttonSelectorNewplace);
-
-    buttonSubmitDisable.disabled = true;
-    buttonSubmitDisable.classList.add(formValidationConfig.buttonDisabledClass);
-};

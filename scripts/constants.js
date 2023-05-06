@@ -32,4 +32,8 @@ const formValidationConfig = {
     buttonSelector: '.popup__save',
     buttonDisabledClass: 'popup__save_disabled',
     buttonSelectorNewplace: '.newplace__save',
-  };
+};
+
+const popupNewplaceWindow = document.querySelector('.popup_photo');
+const photoInWindow = document.querySelector('.popup__photo-image');
+const namePhotoInWindow = document.querySelector('.popup__photo-caption');

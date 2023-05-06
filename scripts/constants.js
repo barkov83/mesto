@@ -25,3 +25,11 @@ const initialCards = [
     },
 ];
 
+const formValidationConfig = {
+    formSelector: '.popup__forms',
+    inputSelector: '.popup__form-item',
+    errorClass: 'popup__form-item_type_error',
+    buttonSelector: '.popup__save',
+    buttonDisabledClass: 'popup__save_disabled',
+    buttonSelectorNewplace: '.newplace__save',
+  };

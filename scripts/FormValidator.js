@@ -1,4 +1,6 @@
-export default class FormValidator {
+import { formValidationConfig } from './/constants.js'
+
+export class FormValidator {
     constructor(formValidationConfig, formElement) {
         this._formSelector = formValidationConfig.formSelector;
         this._inputSelector = formValidationConfig.inputSelector;
@@ -33,22 +35,22 @@ export default class FormValidator {
         const errorElement = this._formElement.querySelector(`#${inputID}-error`);
 
         if (input.validity.valid) {
-            input.classList.remove('popup__form-item_type_error')
+            input.classList.remove(this._errorClass)
             errorElement.textContent = '';
         }
         else {
-            input.classList.add('popup__form-item_type_error');
+            input.classList.add(this._errorClass);
             errorElement.textContent = input.validationMessage;
         }
     }
 
     //активация кнопки отправки
     _toggleButton() {
-        const buttonSubmit = this._formElement.querySelector('.popup__save');
+        const buttonSubmit = this._formElement.querySelector(this._buttonSelector);
         const isFormValid = this._formElement.checkValidity();
 
         buttonSubmit.disabled = !isFormValid;
-        buttonSubmit.classList.toggle('popup__save_disabled', !isFormValid);
+        buttonSubmit.classList.toggle(this._buttonDisabledClass, !isFormValid);
     }
 
     //Установить слушателей
@@ -60,4 +62,12 @@ export default class FormValidator {
             })
         });
     }
+
+    // сделать кнопку отправки НЕактивной
+    _disableSubmitButton() {
+        const buttonSubmitDisable = document.querySelector(this._buttonSelectorNewplace);
+        buttonSubmitDisable.disabled = true;
+        buttonSubmitDisable.classList.add(this._buttonDisabledClass);
+    };
+
 }

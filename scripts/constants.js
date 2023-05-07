@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
@@ -25,7 +25,7 @@ const initialCards = [
     },
 ];
 
-const formValidationConfig = {
+export const formValidationConfig = {
     formSelector: '.popup__forms',
     inputSelector: '.popup__form-item',
     errorClass: 'popup__form-item_type_error',
@@ -34,6 +34,6 @@ const formValidationConfig = {
     buttonSelectorNewplace: '.newplace__save',
 };
 
-const popupNewplaceWindow = document.querySelector('.popup_photo');
-const photoInWindow = document.querySelector('.popup__photo-image');
-const namePhotoInWindow = document.querySelector('.popup__photo-caption');
+export const popupNewplaceWindow = document.querySelector('.popup_photo');
+export const photoInWindow = document.querySelector('.popup__photo-image');
+export const namePhotoInWindow = document.querySelector('.popup__photo-caption');

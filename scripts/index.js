@@ -1,5 +1,6 @@
-import FormValidator from '..//scripts/FormValidator.js';
-import Card from '..//scripts/Card.js';
+import { initialCards, formValidationConfig } from './/constants.js';
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js';
 
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const popupProfile = document.querySelector(".popup-profile");
@@ -54,25 +55,20 @@ function handleSubmitEditProfile(evt) {
 
 formElementEditProfile.addEventListener('submit', handleSubmitEditProfile);
 
-
-const elementsContainer = document.querySelector('.elements__list');
-const elementsContainerTemplate = document.querySelector('.elements__list-template').content;
-
 const buttonAddNewplace = document.querySelector('.profile__add-button');
 const newplace = document.querySelector('.newplace')
 
 const handleOpenButtonAddNewplaceClick = () => {
-	openPopup(newplace);
-	disableSubmitButton();
+	openPopup(newplace);	
 }
 
 buttonAddNewplace.addEventListener('click', handleOpenButtonAddNewplaceClick);
 
-
+const cardsGallery = document.querySelector('.elements__list');
 const createCard = ((item) => {
 	const card = new Card(item, '.elements__list-template');
 	const cardElement = card.generateCard();
-	document.querySelector('.elements__list').prepend(cardElement);
+	cardsGallery.prepend(cardElement);
 });
 
 const nameNewplaceFormInput = document.querySelector('#popup__imagename');
@@ -105,14 +101,6 @@ popupList.forEach((popupElement) => {
 		}
 	});
 });
-
-// сделать кнопку отправки НЕактивной
-function disableSubmitButton() {
-    const buttonSubmitDisable = document.querySelector(formValidationConfig.buttonSelectorNewplace);
-
-    buttonSubmitDisable.disabled = true;
-    buttonSubmitDisable.classList.add(formValidationConfig.buttonDisabledClass);
-};
 
 const profileFormValidator = new FormValidator(formValidationConfig, formElementEditProfile);
 const newCardFormValidator = new FormValidator(formValidationConfig, formElementNewPlace);

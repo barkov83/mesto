@@ -1,4 +1,6 @@
-export default class Card {
+import { popupNewplaceWindow, photoInWindow, namePhotoInWindow } from './constants.js';
+
+export class Card {
     constructor(data, templateSelector) {
         this._name = data.name;
         this._link = data.link;

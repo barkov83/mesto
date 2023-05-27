@@ -69,5 +69,5 @@ export class FormValidator {
         buttonSubmitDisable.disabled = true;
         buttonSubmitDisable.classList.add(this._buttonDisabledClass);
     };
-
+    
 }

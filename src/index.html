@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto Russia</title>
-    <link rel="stylesheet" href="./pages/index.css">
+    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
 
 </head>
 
 <body class="page">
 
     <header class="header">
-        <img src="./images/logo.svg" alt="Логотип сайта" class="header__logo">
+        <img src="<%=require('./images/logo.svg')%>" alt="Логотип сайта" class="header__logo">
     </header>
 
     <main>
         <section class="profile">
 
-            <img class="profile__elips" src="./images/avatar.png" alt="Аватар пользователя">
+            <img class="profile__elips" src="<%=require('./images/avatar.png')%>" alt="Аватар пользователя">
 
             <div class="profile__block">
                 <div class="profile__elements">
@@ -44,7 +44,7 @@
                 <template class="elements__list-template" id="cards-template">
                     <li class="card">
                         <button type="button" class="card__trash"></button>
-                        <img class="card__image" src="./images/karachaevsk.png" alt="">
+                        <img class="card__image" src="#" alt="#">
                         <div class="card__signature">
                             <h2 class="card__title"></h2>
                             <button type="button" class="card__like"></button>
@@ -74,7 +74,7 @@
                 <input 
                 class="popup__form-item" 
                 type="text" 
-                name="popup__username" 
+                name="name" 
                 value="" 
                 id="popup__username"
                 placeholder="Имя" 
@@ -87,7 +87,7 @@
                 <input 
                 class="popup__form-item" 
                 type="text" 
-                name="popup__vocation" 
+                name="info" 
                 value="" id="popup__vocation"
                 placeholder="О себе" 
                 minlength="2" 
@@ -119,7 +119,7 @@
                 <input 
                 class="popup__form-item" 
                 type="text" 
-                name="popup__imagename" 
+                name="name" 
                 placeholder="Название"
                 id="popup__imagename" 
                 minlength="2" 
@@ -131,7 +131,7 @@
                 <input 
                 class="popup__form-item" 
                 type="url" 
-                name="popup__link" 
+                name="link" 
                 placeholder="Ссылка на картинку"
                 id="popup__link" 
                 required>
@@ -147,14 +147,14 @@
     <section class="popup popup_photo">
         <div class="popup__photo-container">
             <button type="button" class="popup__close"></button>
-            <img class="popup__photo-image" src="./images/karachaevsk.png" alt="">
+            <img class="popup__photo-image" src="#" alt="#">
             <p class="popup__photo-caption">Название изображения</p>
         </div>
 
 
     </section>
 
-    <script type="module" src="./scripts/index.js"></script>
+    <!-- <script type="module" src="./scripts/index.js"></script> -->
     
     </body>
 

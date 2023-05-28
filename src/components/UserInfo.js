@@ -14,14 +14,9 @@ export class UserInfo {
 
   // получение данных из экземпляра
   getUserInfo() {
-    const {
-      _name: name,
-      _info: info,
-    } = this;
-
     return {
-      name,
-      info,
+      name: this.name,
+      info: this._info,
     };
   }
 

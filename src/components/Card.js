@@ -1,4 +1,4 @@
-import { popupNewplaceWindow, photoInWindow, namePhotoInWindow } from "./constants.js";
+import { popupNewplaceWindow, photoInWindow, namePhotoInWindow } from "../utils/constants.js";
 
 export class Card {
         constructor(data, templateSelector, handleCardClickCb) {

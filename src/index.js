@@ -19,33 +19,13 @@ const karachaevsk = new URL('./images/karachaevsk.png', import.meta.url);
 const Peterburg = new URL('./images/Peterburg.jpg', import.meta.url);
 const Sochi = new URL('./images/Sochi.jpg', import.meta.url);
 
-const whoIsTheGoat = [
-  // меняем исходные пути на переменные
-  { name: 'addButtonPlus', image: addButtonPlus },
-  { name: 'card__like_active', image: card__like_active },
-  { name: 'card__like_disabled', image: card__like_disabled },
-  { name: 'card__trash', image: card__trash },
-  { name: 'edit_button', image: editButton },
-  { name: 'edit_button_element', image: editButtonElement },
-  { name: 'logo', image: logo },
-  { name: 'popup__closeIcon', image: popup__closeIcon },
-  { name: 'Vector', image: Vector },
-  { name: 'avatar.png', link: avatar },
-  { name: 'Dombai.png', link: Dombai },
-  { name: 'Elbrus.png', link: Elbrus },
-  { name: 'Kaliningrad.png', link: Kaliningrad },
-  { name: 'karachaevsk.png', link: karachaevsk },
-  { name: 'Peterburg.png', link: Peterburg },
-  { name: 'Sochi.png', link: Sochi },  
-];
-
-import { initialCards, formValidationConfig } from ".//constants.js";
-import { FormValidator } from "./FormValidator.js";
-import { Card } from "./Card.js";
-import { Section } from "./Section.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
+import { initialCards, formValidationConfig } from "./utils/constants.js";
+import { FormValidator } from "./components/FormValidator.js";
+import { Card } from "./components/Card.js";
+import { Section } from "./components/Section.js";
+import { PopupWithImage } from "./components/PopupWithImage.js";
+import { PopupWithForm } from "./components/PopupWithForm.js";
+import { UserInfo } from "./components/UserInfo.js";
 
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const formElementEditProfile = document.querySelector("#editUserProfile");
@@ -75,16 +55,16 @@ popupPhoto.setEventListeners();
 
 // создание карточки и связываем ее с вызовом попапа
 const createCard = (data) => {
-    const card = new Card(data, ".elements__list-template", (name, link) => popupPhoto.open(name, link));
-    const cardElement = card.generateCard();
+    const card = new Card(data, ".elements__list-template", (name, link) => popupPhoto.open(name, link));   
 
-    return cardElement;
+    return card.generateCard();;
 };
+const renderCard = (item, list) => list.addItem(createCard(item));
 
 const cardsList = new Section(
     {
         items: initialCards,
-        renderer: (item) => cardsList.addItem(createCard(item)),
+        renderer: (item) => renderCard(item, cardsList),        
     },
     ".elements__list",
 );
@@ -92,10 +72,10 @@ const cardsList = new Section(
 cardsList.renderItems();
 
 // хэндлер колбэка при клике на кнопку сохранить формы изменения деталей профиля
-const handleProfileEdit = ({ name, info }) => userInfo.setUserInfo({ name, info });
+const handleProfileEdit = (item) => userInfo.setUserInfo(item);
 
 // хэндлер колбэка формы добавления карточки
-const handleAddCard = (data) => cardsList.addItem(createCard(data));
+const handleAddCard = (data) => renderCard(data, cardsList);
 
 // создание экземпляров попапов для форм изменения профиля и создания карточки
 const editProfilePopup = new PopupWithForm(".popup-profile", handleProfileEdit);

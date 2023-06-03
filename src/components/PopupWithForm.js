@@ -1,36 +1,57 @@
-import { Popup } from "./Popup.js";
+import { Popup } from "#components/Popup.js";
 
 export class PopupWithForm extends Popup {
-    constructor(popupSelector, submitForm) {
+    constructor(popupSelector, submitFormCb) {
         super(popupSelector);
 
-        this._submitForm = submitForm;
-        this._form = this._popup.querySelector(".popup__forms");        
+        this._submitFormCb = submitFormCb;
+        this._formElement = this._popup.querySelector(".popup__forms");
+        this._submitButtonElement = this._formElement.querySelector(".popup__save");
+        this._submitButtonText = this._submitButtonElement.textContent;
     }
 
     //собирает данные всех полей формы
     _getInputValues() {
-        const formData = new FormData(this._form);
-
-        return Object.fromEntries(formData);
+        return Object.fromEntries(new FormData(this._formElement));
     }
 
-    
-    
+    _restoreButtonState() {
+        this._submitButtonElement.disabled = false;
+        this._submitButtonElement.textContent = this._submitButtonText;
+    }
+
+    // переопределение коллбэка на сабмит формы
+    setSubmitFormCallback(cb) {
+        this._submitFormCb = cb;
+    }
+
     setEventListeners() {
-    //добавлять обработчик клика иконке закрытия
+        //добавлять обработчик клика иконке закрытия
         super.setEventListeners();
-    //добавлять обработчик сабмита формы.
-        this._form.addEventListener("submit", (evt) => {
+
+        //добавлять обработчик сабмита формы.
+        this._formElement.addEventListener("submit", async (evt) => {
             evt.preventDefault();
-            this._submitForm(this._getInputValues());
-            this.close();
+
+            this._submitButtonElement.innerText = "Сохранение...";
+            this._submitButtonElement.disabled = true;
+
+            // ожидаем асинхронный коллбэк чтобы закрыть попап при удачном ответе
+            // после этого возвращаем оригинальное состояние кнопки
+            // попап закрывается только при удачном ответе
+            try {
+                await this._submitFormCb(this._getInputValues());
+                this.close();
+            }
+            finally {
+                this._restoreButtonState();
+            }
         });
     }
 
     //Закрыть попап
     close() {
         super.close();
-        this._form.reset();
+        this._formElement.reset();
     }
 }

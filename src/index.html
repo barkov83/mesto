@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto Russia</title>
-    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+    <title>Mesto Russia</title>    
 
 </head>
 
@@ -20,6 +19,7 @@
         <section class="profile">
 
             <img class="profile__elips" src="<%=require('./images/avatar.png')%>" alt="Аватар пользователя">
+            <button class="profile__elips-overlay"></button>
 
             <div class="profile__block">
                 <div class="profile__elements">
@@ -48,6 +48,7 @@
                         <div class="card__signature">
                             <h2 class="card__title"></h2>
                             <button type="button" class="card__like"></button>
+                            <div class="card__likes">0</div>
                         </div>
                     </li>
                 </template>
@@ -87,7 +88,7 @@
                 <input 
                 class="popup__form-item" 
                 type="text" 
-                name="info" 
+                name="about" 
                 value="" id="popup__vocation"
                 placeholder="О себе" 
                 minlength="2" 
@@ -144,18 +145,74 @@
         </div>
     </section>
 
+    <section class="popup avatar">
+        <div class="popup__container">
+            <button type="button" class="popup__close avatar__close"></button>
+            <h2 class="popup__header">Обновить аватар</h2>
+
+            <form 
+            action="#" 
+            method="post" 
+            class="popup__forms" 
+            id="editUserAvatar" 
+            name="editUserAvatar"
+            novalidate>
+                <input 
+                class="popup__form-item" 
+                type="url" 
+                name="avatar" 
+                placeholder="Ссылка на картинку"
+                id="popup__avatar" 
+                required>
+
+                <span id="popup__avatar-error" class="error"></span>
+
+                <button class="popup__save avatar__save" type='submit'>Сохранить</button>
+            </form>
+
+        </div>
+    </section>
+
     <section class="popup popup_photo">
         <div class="popup__photo-container">
             <button type="button" class="popup__close"></button>
             <img class="popup__photo-image" src="#" alt="#">
             <p class="popup__photo-caption">Название изображения</p>
         </div>
-
-
     </section>
 
-    <!-- <script type="module" src="./scripts/index.js"></script> -->
-    
+
+
+
+    <section class="popup popup-delete-card">
+        <div class="popup__container">
+            <button type="button" class="popup__close"></button>
+            <h2 class="popup__header">Вы уверены?</h2>
+
+            <form 
+            action="#" 
+            method="post" 
+            class="popup__forms popup__forms_empty" 
+            id="deleteCardForm" 
+            name="deleteCardForm"
+            novalidate>
+                <input 
+                class="popup__form-item" 
+                type="hidden" 
+                name="id" 
+                value=""
+                id="popup__card-id"
+                required>
+
+                <span id="popup__card-id-error" class="error"></span>
+
+                <button class="popup__save" type='submit'>Да</button>
+
+            </form>
+
+        </div>
+    </section>
+       
     </body>
 
 </html>

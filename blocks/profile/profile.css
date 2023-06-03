@@ -4,6 +4,7 @@
     padding: 0;
     margin: 40px auto 0 auto;
     display: flex;
+    position: relative;
 }
 
 /* для разрешения 1060px */

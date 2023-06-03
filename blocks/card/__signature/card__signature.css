@@ -1,6 +1,9 @@
 .card__signature {
     margin: 25px 15px 25px 21px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    row-gap: 6px;
+    column-gap: 8px;
+    grid-template-areas: "title like"
+                         "title likes";
 }

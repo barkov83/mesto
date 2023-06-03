@@ -37,6 +37,6 @@ export class Popup {
     
     // слушатель события кнопки закрытие попапа
     setEventListeners() {
-        this._closeButton.addEventListener("click", () => this.close());
+        this._closeButton.addEventListener("click", this.close.bind(this));
     }
 }

@@ -3,7 +3,6 @@ import "#utils/images.js";
 
 // используем псевдонимы для корня проекта
 // imports в package.json
-// https://nodejs.org/docs/latest-v18.x/api/packages.html#subpath-imports
 import { Api } from "#infrastructure/Api.js";
 import {
     formValidationConfig,

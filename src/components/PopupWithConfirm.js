@@ -7,11 +7,18 @@ export class PopupWithConfirm extends Popup {
         this._submitFormCb = () => {};
         this._submitButtonElement = this._popup.querySelector(".popup__save");
         this._submitButtonText = this._submitButtonElement.textContent;
+        this._id = undefined;
     }
 
     _restoreButtonState() {
         this._submitButtonElement.disabled = false;
         this._submitButtonElement.textContent = this._submitButtonText;
+    }
+
+    open(id) {
+        super.open();
+
+        this._id = id;
     }
 
     // переопределение коллбэка на сабмит формы
@@ -34,7 +41,7 @@ export class PopupWithConfirm extends Popup {
             // после этого возвращаем оригинальное состояние кнопки
             // попап закрывается только при удачном ответе
             try {
-                await this._submitFormCb();
+                await this._submitFormCb(this._id);
                 this.close();
             }
             finally {

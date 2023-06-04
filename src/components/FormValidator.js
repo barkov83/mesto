@@ -7,7 +7,7 @@ export class FormValidator {
         this._formElement = formElement;
 
         this._buttonNewplaceElement = document.querySelector(formValidationConfig.buttonSelectorNewplace);
-        this._buttonElement = document.querySelector(formValidationConfig.buttonSelector);
+        this._buttonElement = this._formElement.querySelector(formValidationConfig.buttonSelector);
     }
 
     //отключить отправку

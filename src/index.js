@@ -3,15 +3,15 @@ import "#utils/images.js";
 
 // используем псевдонимы для корня проекта
 // imports в package.json
-import { Api } from "#infrastructure/Api.js";
 import {
     formValidationConfig,
     apiUrl,
     headers,
-    popupNewplaceWindow,
-    photoInWindow,
-    namePhotoInWindow,
+    cardSelectors,
+    userInfoSelectors,
+    Selector,
 } from "#utils/constants.js";
+import { Api } from "#infrastructure/Api.js";
 import { FormValidator } from "#components/FormValidator.js";
 import { Card } from "#components/Card.js";
 import { Section } from "#components/Section.js";
@@ -20,13 +20,12 @@ import { PopupWithForm } from "#components/PopupWithForm.js";
 import { PopupWithConfirm } from "#components/PopupWithConfirm.js";
 import { UserInfo } from "#components/UserInfo.js";
 
-const buttonEditProfile = document.querySelector(".profile__edit-button");
-const formElementEditProfile = document.querySelector("#editUserProfile");
-const buttonAddNewplace = document.querySelector(".profile__add-button");
-const formElementNewPlace = document.querySelector("#editUserImage");
-const buttonEditAvatar = document.querySelector(".profile__elips-overlay");
-const formElementEditAvatar = document.querySelector("#editUserAvatar");
-const formElementRemoveCard = document.querySelector("#deleteCardForm");
+const buttonEditProfile = document.querySelector(Selector.buttonEditProfile);
+const formElementEditProfile = document.querySelector(Selector.formElementEditProfile);
+const buttonAddNewplace = document.querySelector(Selector.buttonAddNewplace);
+const formElementNewPlace = document.querySelector(Selector.formElementNewPlace);
+const buttonEditAvatar = document.querySelector(Selector.buttonEditAvatar);
+const formElementEditAvatar = document.querySelector(Selector.formElementEditAvatar);
 
 const profileFormValidator = new FormValidator(formValidationConfig, formElementEditProfile);
 const newCardFormValidator = new FormValidator(formValidationConfig, formElementNewPlace);
@@ -37,20 +36,12 @@ newCardFormValidator.enableValidation();
 avatarEditFormValidator.enableValidation();
 
 const api = new Api(apiUrl, headers);
-
-const nameSelector = ".profile__title";
-const aboutSelector = ".profile__subtitle";
-const avatarSelector = ".profile__elips";
-const userInfo = new UserInfo({
-    nameSelector,
-    aboutSelector,
-    avatarSelector,
-});
+const userInfo = new UserInfo(userInfoSelectors);
 
 // попап для карточки при отображении картинки
-const popupPhoto = new PopupWithImage(".popup_photo");
+const popupPhoto = new PopupWithImage(Selector.popupPhoto);
 // попап удаления карточки
-const popupDeleteCard = new PopupWithConfirm(".popup-delete-card");
+const popupDeleteCard = new PopupWithConfirm(Selector.popupDeleteCard);
 
 popupPhoto.setEventListeners();
 popupDeleteCard.setEventListeners();
@@ -62,36 +53,28 @@ const handleLikeClickCb = async (id, isSet) => {
         return isSet ? await api.addLike(id) : await api.deleteLike(id);
     } catch (error) {
         console.error(error);
-
-        return Promise.reject(error);
     }
 };
 
 // хэндлер удаления карточки
 const handleCardDeleteCb = (id) =>
-    new Promise((resolve, reject) => {
-        const callback = () =>
+    new Promise((resolve) => {
+        const callback = (id) =>
             api
                 .deleteCard(id)
                 .then(resolve)
-                .catch((error) => {
-                    console.error(`Error due deleting card. ${error}`);
+                .catch((error) => console.error(`Error due deleting card. ${error}`));
 
-                    reject(error);
-                });
-
-        formElementRemoveCard.elements.id.value = id;
         popupDeleteCard.setCallback(callback);
-        popupDeleteCard.open();
+        popupDeleteCard.open(id);
     });
 
 // создание карточки и связываем ее с вызовом попапа
 const createCard = (data) => {
     const { _id: userId } = userInfo.getUserInfo();
-    const selectors = { popupNewplaceWindow, photoInWindow, namePhotoInWindow };
     const card = new Card(
         data,
-        ".elements__list-template",
+        Selector.template,
         (name, link) => popupPhoto.open(name, link),
         (...args) =>
             handleLikeClickCb(...args)
@@ -102,7 +85,7 @@ const createCard = (data) => {
                 .then(() => card.delete())
                 .catch(() => {}),
         userId,
-        selectors,
+        cardSelectors,
     );
 
     return card.generateCard();
@@ -119,7 +102,7 @@ Promise.all([api.getUserData(), api.getCardData()]).then(([userData, cardData]) 
             items: cardData.reverse(),
             renderer: (item) => renderCard(item, cardsList),
         },
-        ".elements__list",
+        Selector.elements,
     );
     cardsList.renderItems();
 });
@@ -129,26 +112,26 @@ const handleProfileEdit = (payload) =>
     api
         .updateUserData(payload)
         .then((data) => userInfo.setUserInfo(data))
-        .catch((error) => (console.error(`Error due profile updating. ${error}`), Promise.reject(error)));
+        .catch((error) => console.error(`Error due profile updating. ${error}`));
 
 // хэндлер колбэка формы добавления карточки
 const handleAddCard = (payload) =>
     api
         .addCard(payload)
         .then((data) => cardsList.addItem(new createCard(data)))
-        .catch((error) => (console.error(`Error due card creating. ${error}`), Promise.reject(error)));
+        .catch((error) => console.error(`Error due card creating. ${error}`));
 
 // хэндлер коллбэка формы изменения аватара
 const handleEditAvatar = ({ avatar }) =>
     api
         .updateAvatar(avatar)
         .then((data) => userInfo.setUserInfo(data))
-        .catch((error) => (console.error(`Error due avatar updating. ${error}`), Promise.reject(error)));
+        .catch((error) => console.error(`Error due avatar updating. ${error}`));
 
 // создание экземпляров попапов для форм изменения профиля и создания карточки
-const popupEditProfile = new PopupWithForm(".popup-profile", handleProfileEdit);
-const popupAddCard = new PopupWithForm(".newplace", handleAddCard);
-const popupEditAvatar = new PopupWithForm(".avatar", handleEditAvatar);
+const popupEditProfile = new PopupWithForm(Selector.popupEditProfile, handleProfileEdit);
+const popupAddCard = new PopupWithForm(Selector.popupAddCard, handleAddCard);
+const popupEditAvatar = new PopupWithForm(Selector.popupEditAvatar, handleEditAvatar);
 
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();

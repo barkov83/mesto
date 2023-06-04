@@ -6,9 +6,6 @@
           "./src/*",
           "./src/*.js",
           "./src/*/index.js"
-        ],
-        "#pages*": [
-          "./pages/*"
         ]
       }
   }

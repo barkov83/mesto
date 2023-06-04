@@ -3,10 +3,11 @@ export class FormValidator {
         this._formSelector = formValidationConfig.formSelector;
         this._inputSelector = formValidationConfig.inputSelector;
         this._errorClass = formValidationConfig.errorClass;
-        this._buttonSelector = formValidationConfig.buttonSelector;
         this._buttonDisabledClass = formValidationConfig.buttonDisabledClass;
-        this._buttonSelectorNewplace = formValidationConfig.buttonSelectorNewplace;
         this._formElement = formElement;
+
+        this._buttonNewplaceElement = document.querySelector(formValidationConfig.buttonSelectorNewplace);
+        this._buttonElement = document.querySelector(formValidationConfig.buttonSelector);
     }
 
     //отключить отправку
@@ -42,26 +43,23 @@ export class FormValidator {
 
     //активация кнопки отправки
     _toggleButton() {
-        const buttonSubmit = this._formElement.querySelector(this._buttonSelector);
         const isFormValid = this._formElement.checkValidity();
 
-        buttonSubmit.disabled = !isFormValid;
-        buttonSubmit.classList.toggle(this._buttonDisabledClass, !isFormValid);
+        this._buttonElement.disabled = !isFormValid;
+        this._buttonElement.classList.toggle(this._buttonDisabledClass, !isFormValid);
     }
 
     //Установить слушателей
     _addInputListeners() {
         this._formElement
-            .querySelectorAll(this._inputSelector) // возвращает NodeList, у которго есть встроенный метод forEach
+            .querySelectorAll(this._inputSelector) // возвращает NodeList, у которого есть встроенный метод forEach
             .forEach((item) => item.addEventListener('input', this._handleFormInput.bind(this)));
     }
 
     // сделать кнопку отправки НЕактивной
     _disableSubmitButton() {
-        const buttonSubmitDisable = document.querySelector(this._buttonSelectorNewplace);
-
-        buttonSubmitDisable.disabled = true;
-        buttonSubmitDisable.classList.add(this._buttonDisabledClass);
+        this._buttonNewplaceElement.disabled = true;
+        this._buttonNewplaceElement.classList.add(this._buttonDisabledClass);
     };
     
 }

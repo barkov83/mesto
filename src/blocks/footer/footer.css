@@ -1,0 +1,22 @@
+.footer {
+    max-width: 880px;
+    width: calc(100% - 2*200px);
+    padding: 0;
+    margin: 66px auto 60px auto;
+}
+
+/* для разрешения 768px */
+@media screen and (max-width: 768px) {
+    .footer {
+        width: calc(100% - 2*120px);
+    }
+}
+
+/* для разрешения 425px */
+@media screen and (max-width: 425px) {
+    .footer {
+        max-width: 282px;
+        width: calc(100% - 2*19px);
+        margin: 48px auto 36px auto;
+    }
+}

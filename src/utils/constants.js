@@ -10,9 +10,9 @@ export const formValidationConfig = {
     buttonSelectorNewplace: ".newplace__save",
 };
 
-export const popupNewplaceWindow = document.querySelector(".popup_photo");
-export const photoInWindow = document.querySelector(".popup__photo-image");
-export const namePhotoInWindow = document.querySelector(".popup__photo-caption");
+export const popupNewplaceWindow = ".popup_photo";
+export const photoInWindow = ".popup__photo-image";
+export const namePhotoInWindow = ".popup__photo-caption";
 
 export const headers = { authorization: token, "Content-Type": "application/json" };
 export const apiUrl = `https://mesto.nomoreparties.co/v1/${groupId}`;

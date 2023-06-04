@@ -4,26 +4,26 @@ export class Api {
     this._headers = { ...headers };
   }
 
-  _checkResponse(response) {
+  __checkResponse(response) {
     // проверяется только успешный ответ. ошибки всплывают в клиентский код
     // и должны быть обработаны там
     return response.ok ? response.json() : Promise.reject(new Error(`${response.status} ${response.statusText}`));
   }
 
-  _request(slug, options = {}) {
+  __request(slug, options = {}) {
     const url = `${this._baseUrl}${slug}`;
     const fetchOptions = {
       headers: { ...this._headers },
       ...options,
     }
 
-    return fetch(url, fetchOptions).then(this._checkResponse);
+    return fetch(url, fetchOptions).then(this.__checkResponse);
   }
 
   getUserData() {
     const slug = `/users/me`;
 
-    return this._request(slug);
+    return this.__request(slug);
   }
 
   updateAvatar(avatar) {
@@ -33,13 +33,13 @@ export class Api {
       body: JSON.stringify({ avatar }),
     };
 
-    return this._request(slug, options);
+    return this.__request(slug, options);
   }
 
   getCardData() {
     const slug = `/cards`;
 
-    return this._request(slug);
+    return this.__request(slug);
   }
 
   updateUserData({ name, about }) {
@@ -49,7 +49,7 @@ export class Api {
       body: JSON.stringify({ name, about }),
     };
 
-    return this._request(slug, options);
+    return this.__request(slug, options);
   }
 
   addCard(payload) {
@@ -59,7 +59,7 @@ export class Api {
       body: JSON.stringify(payload),
     };
 
-    return this._request(slug, options);
+    return this.__request(slug, options);
   }
   
   deleteCard(cardId) {
@@ -68,7 +68,7 @@ export class Api {
       method: 'DELETE',
     };
 
-    return this._request(slug, options);
+    return this.__request(slug, options);
   }
 
   addLike(cardId) {
@@ -77,7 +77,7 @@ export class Api {
       method: 'PUT',
     };
 
-    return this._request(slug, options);
+    return this.__request(slug, options);
   }
 
   deleteLike(cardId) {
@@ -86,6 +86,6 @@ export class Api {
       method: 'DELETE',
     };
 
-    return this._request(slug, options);
+    return this.__request(slug, options);
   }
 }

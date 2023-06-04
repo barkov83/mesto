@@ -1,7 +1,7 @@
-import { popupNewplaceWindow, photoInWindow, namePhotoInWindow } from "#utils/constants.js";
-
 export class Card {
-    constructor(cardData, templateSelector, handleCardClickCb, handleLikeClickCb, handleCardDeleteCb, userId) {
+    constructor(cardData, templateSelector, handleCardClickCb, handleLikeClickCb, handleCardDeleteCb, userId, selectors) {
+        const { popupNewplaceWindow, photoInWindow, namePhotoInWindow } = selectors;
+
         this._data = cardData;
         this._templateSelector = templateSelector;
         this._handleCardClickCb = handleCardClickCb;
@@ -15,6 +15,10 @@ export class Card {
         this._likeButtonElement = undefined;
         this._likesCountElement = undefined;
         this._deleteCardButton = undefined;
+
+        this._popupNewplaceWindowElement = document.querySelector(popupNewplaceWindow);
+        this._photoInWindowElement = document.querySelector(photoInWindow);
+        this._namePhotoInWindowElement = document.querySelector(namePhotoInWindow);
 
         this._updateStats(cardData);
     }
@@ -36,29 +40,9 @@ export class Card {
         return cardElement;
     }
 
-    _handleOpenPopup() {
-        photoInWindow.src = this._data.link;
-        namePhotoInWindow.textContent = this._data.name;
-        popupNewplaceWindow.classList.add("popup_opened");
-    }
-
-    _handleLikeCard() {
-        this._handleLikeClickCb(this._data._id, !this._hasUserLike).then((cardData) => {
-            this._updateStats(cardData);
-            this._likesCountElement.textContent = `${this._likesCount}`;
-            this._likeButtonElement.classList.toggle("card__like_active");
-        });
-    }
-
-    _handleDeleteCard() {
-        this._handleCardDeleteCb(this._data._id)
-            .then(() => this._element.remove())
-    }
-
     _setEventListeners() {
-        this._imageElement.addEventListener("click", this._handleOpenPopup.bind(this));
-        this._likeButtonElement.addEventListener("click", this._handleLikeCard.bind(this));
-        this._deleteCardButton.addEventListener("click", this._handleDeleteCard.bind(this));
+        this._likeButtonElement.addEventListener("click", () => this._handleLikeClickCb(this._data._id, !this._hasUserLike));
+        this._deleteCardButton.addEventListener("click", () => this._handleCardDeleteCb(this._data._id));
         this._imageElement.addEventListener("click", () => this._handleCardClickCb(this._data.name, this._data.link));
     }
 
@@ -84,5 +68,18 @@ export class Card {
         this._setEventListeners();
 
         return this._element;
+    }
+
+    update(data) {
+        this._updateStats(data);
+
+        const method = this._hasUserLike ? "add" : "remove";
+
+        this._likeButtonElement.classList[method]("card__like_active");
+        this._likesCountElement.textContent = `${this._likesCount}`;
+    }
+
+    delete() {
+        this._element.remove();
     }
 }

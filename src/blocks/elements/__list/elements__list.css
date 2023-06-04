@@ -1,0 +1,24 @@
+.elements__list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    list-style-type: none;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    grid-column-gap: 17px;
+    grid-row-gap: 20px;
+    width: 100%;
+}
+
+/* для разрешения 1280px */
+@media screen and (max-width: 1280px) {
+    .elements__list {
+        justify-items: center;
+    }
+}
+
+/* для разрешения 425px */
+@media screen and (max-width: 425px) {
+    .elements__list {
+        max-width: 282px;
+    }
+}
